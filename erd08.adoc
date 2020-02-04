@@ -1,0 +1,63 @@
+# ERD 08
+
+## 1.3 Entities
+- Present
+- City
+- Child
+- Tour
+- Sleigh
+
+## 1.2 UML
+
+[plantuml, diagram-classes, png]
+....
+class Present
+class City
+class Child
+class Tour
+class Sleigh
+
+Present "*" - "1" Tour : belongs
+Tour "1" - "1" City : aims at
+City "1" - "*" Child : has
+Present "*" - "1" Child : belongs
+Tour "1" - "1" Sleigh
+
+Present : id
+Present : agedown
+Present : ageup
+Present : category
+Present : Tour (Tour:id)
+Present : Child (Child:id)
+
+Tour : id
+Tour : destination (City:id)
+Tour : timestart
+Tour : timeend
+Tour : sleigh (Sleigh:id)
+
+City : id
+City : name
+
+Sleigh : id
+
+Child : id
+Child : name
+Child : age
+Child : behavior
+Child : Home (City:id)
+....
+
+## 1.3 Relational Model
+
+Present = (**pk**: id, agedown, ageup, category, **fk**: tour (Tour:id), **fk**: child(Child:id))
+
+Tour = (**pk**: id, timestart, timeend, **fk**: destination (City:id), **fk**: sleigh (Sleigh:id))
+
+
+Sleigh = (**pk**: id)
+
+City = (**pk**: id, name)
+
+Child = (**pk**: id, name, age, behavior, **fk**: home (City:id))
+
